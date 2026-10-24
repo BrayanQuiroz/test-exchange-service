@@ -13,6 +13,7 @@ public class ExchangeConversionRepositoryAdapter implements ExchangeConversionRe
 
     private final SpringDataConversionRepository jpaRepository;
 
+
     @Override
     public ExchangeConversion save(ExchangeConversion domain) {
         ConversionEntity entity = ConversionEntity.builder()
