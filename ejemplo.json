@@ -1,0 +1,104 @@
+{
+  "info": {
+    "_postman_id": "b8f9a2c1-4d3e-4a1b-9c8d-7e6f5a4b3c2d",
+    "name": "Test Exchange Service API",
+    "description": "Colección de pruebas para el microservicio de conversión de tipo de cambio.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Convertir Moneda - Exitoso (USD a PEN)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"monto\": 100,\n  \"monedaOrigen\": \"USD\",\n  \"monedaDestino\": \"PEN\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/exchange/convert",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "exchange",
+            "convert"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Error 400 - Validación (Monto negativo y código inválido)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"monto\": -50,\n  \"monedaOrigen\": \"US\",\n  \"monedaDestino\": \"\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/exchange/convert",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "exchange",
+            "convert"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. Error 400 - Moneda Destino No Soportada",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"monto\": 100,\n  \"monedaOrigen\": \"USD\",\n  \"monedaDestino\": \"XYZ\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/exchange/convert",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "exchange",
+            "convert"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ]
+}
